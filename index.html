@@ -9,7 +9,7 @@
   <!-- viewport: hace que la página se adapte al ancho de un celular -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- title: el texto que aparece en la pestaña del navegador -->
-  <title>[Tu Nombre] · Portafolio</title>
+  <title>Aguayo Gonzalez Edgar Steven · Portafolio</title>
 <!-- cierre de head: termina la zona de metadatos -->
 </head>
 <!-- body: todo lo que SÍ se ve en pantalla va acá dentro -->
@@ -74,7 +74,257 @@
     </section>
   <!-- cierre de main -->
   </main>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto</title>
+<style>
+  :root {
+    --paper: #F7F5EF;
+    --ink: #1C2321;
+    --line: #C9C2B2;
+    --moss: #4B5E4A;
+    --moss-dark: #354438;
+    --rust: #A6432E;
+    --muted: #6B6459;
+  }
 
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    display: flex;
+    justify-content: center;
+    padding: 64px 20px;
+    line-height: 1.5;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .kicker {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    margin: 0 0 6px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  p.lead {
+    color: var(--muted);
+    margin: 0 0 40px;
+    max-width: 38ch;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .field {
+    position: relative;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px;
+    transition: border-color 0.2s ease;
+  }
+
+  .field:focus-within {
+    border-color: var(--moss);
+  }
+
+  label {
+    display: block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  input, textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 17px;
+    color: var(--ink);
+    padding: 4px 0;
+    outline: none;
+    resize: none;
+  }
+
+  textarea { min-height: 90px; }
+
+  .field small.hint {
+    display: block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .field small.error {
+    display: none;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    color: var(--rust);
+    margin-top: 4px;
+  }
+
+  .field.invalid { border-color: var(--rust); }
+  .field.invalid small.error { display: block; }
+  .field.invalid small.hint { display: none; }
+
+  button {
+    margin-top: 12px;
+    align-self: flex-start;
+    background: var(--moss-dark);
+    color: var(--paper);
+    border: none;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    padding: 13px 28px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  button:hover { background: var(--moss); }
+
+  .status {
+    margin-top: 20px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    color: var(--moss-dark);
+    display: none;
+  }
+
+  .status.visible { display: block; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <p class="kicker">Ponte en contacto</p>
+  <h1>Escríbenos</h1>
+  <p class="lead">Responde estas preguntas y te contactaremos en menos de un día hábil.</p>
+
+  <form id="contactForm" novalidate>
+
+    <div class="field" data-field="nombre">
+      <label for="nombre">Nombre completo</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        required
+        minlength="3"
+        maxlength="60"
+        placeholder="Ej. Ana García"
+      >
+      <small class="hint">Como quieres que te llamemos.</small>
+      <small class="error">Escribe al menos 3 caracteres.</small>
+    </div>
+
+    <div class="field" data-field="email">
+      <label for="email">Correo electrónico</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        placeholder="ana@correo.com"
+      >
+      <small class="hint">Usaremos esto para responderte.</small>
+      <small class="error">Escribe un correo válido, ej. nombre@dominio.com.</small>
+    </div>
+
+    <div class="field" data-field="telefono">
+      <label for="telefono">Teléfono (opcional)</label>
+      <input
+        type="tel"
+        id="telefono"
+        name="telefono"
+        pattern="^[0-9+\-\s]{7,15}$"
+        placeholder="662 123 4567"
+      >
+      <small class="hint">Solo números, espacios o guiones.</small>
+      <small class="error">Revisa el formato del teléfono.</small>
+    </div>
+
+    <div class="field" data-field="mensaje">
+      <label for="mensaje">Mensaje</label>
+      <textarea
+        id="mensaje"
+        name="mensaje"
+        required
+        minlength="10"
+        maxlength="500"
+        placeholder="Cuéntanos en qué podemos ayudarte"
+      ></textarea>
+      <small class="hint">Mínimo 10 caracteres.</small>
+      <small class="error">El mensaje necesita al menos 10 caracteres.</small>
+    </div>
+
+    <button type="submit">Enviar mensaje</button>
+    <p class="status" id="statusMsg">Gracias, tu mensaje fue enviado correctamente.</p>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const statusMsg = document.getElementById('statusMsg');
+
+  function validateField(fieldEl) {
+    const input = fieldEl.querySelector('input, textarea');
+    const isValid = input.checkValidity();
+    fieldEl.classList.toggle('invalid', !isValid);
+    return isValid;
+  }
+
+  form.querySelectorAll('.field').forEach(fieldEl => {
+    const input = fieldEl.querySelector('input, textarea');
+    input.addEventListener('blur', () => validateField(fieldEl));
+    input.addEventListener('input', () => {
+      if (fieldEl.classList.contains('invalid')) validateField(fieldEl);
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    statusMsg.classList.remove('visible');
+
+    let allValid = true;
+    form.querySelectorAll('.field').forEach(fieldEl => {
+      const valid = validateField(fieldEl);
+      if (!valid) allValid = false;
+    });
+
+    if (allValid) {
+      statusMsg.classList.add('visible');
+      form.reset();
+    } else {
+      const firstInvalid = form.querySelector('.field.invalid input, .field.invalid textarea');
+      if (firstInvalid) firstInvalid.focus();
+    }
+  });
+</script>
+
+</body>
+</html>
   <!-- footer con id="contacto": acá aterriza el tercer enlace; va una sola vez, al final -->
   <footer id="contacto">
     <h2>Contacto</h2>
