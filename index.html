@@ -1,341 +1,405 @@
-<!-- DOCTYPE: le dice al navegador que interprete esto como HTML5 -->
-<!DOCTYPE html>
-<!-- html: la raíz del documento; lang="es" ayuda a lectores de pantalla y buscadores -->
-<html lang="es">
-<!-- head: metadatos que el navegador necesita pero que NO se ven en la página -->
-<head>
-  <!-- UTF-8: permite escribir tildes y ñ sin que se rompan -->
-  <meta charset="UTF-8">
-  <!-- viewport: hace que la página se adapte al ancho de un celular -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- title: el texto que aparece en la pestaña del navegador -->
-  <title>Aguayo Gonzalez Edgar Steven · Portafolio</title>
-<!-- cierre de head: termina la zona de metadatos -->
-</head>
-<!-- body: todo lo que SÍ se ve en pantalla va acá dentro -->
-<body>
-
-  <!-- header: cabecera de la página, va una sola vez -->
-  <header>
-    <!-- h1: el único título principal de toda la página -->
-    <h1>Aguayo Gonzalez Edgar Steven</h1>
-    <!-- p: subtítulo descriptivo, no cuenta como encabezado -->
-    <p>[Estudiante de Desarrollo Web · UTH]</p>
-    <!-- nav: agrupa los enlaces de navegación interna -->
-    <nav>
-      <!-- ul: lista no ordenada que contiene los enlaces -->
-      <ul>
-        <!-- li + a: cada ítem es un enlace; href="#sobre-mi" salta al id igual más abajo -->
-        <li><a href="#sobre-mi">Sobre mí</a></li>
-        <!-- salta a la sección con id="skills" -->
-        <li><a href="#skills">Skills</a></li>
-        <!-- salta al footer con id="contacto" -->
-        <li><a href="#contacto">Contacto</a></li>
-      <!-- cierre de la lista -->
-      </ul>
-    <!-- cierre de nav -->
-    </nav>
-  <!-- cierre de header -->
-  </header>
-
-  <!-- main: el contenido único de la página, una sola vez -->
-  <main>
-    <!-- section con id="sobre-mi": acá aterriza el primer enlace del nav -->
-    <section id="sobre-mi">
-      <!-- h2: título propio de esta sección -->
-      <h2>Sobre mí</h2>
-      <!-- p: tu texto de presentación -->
-      <p>[2-3 frases: quién sos, qué estás estudiando, qué te interesa del desarrollo web.]</p>
-    <!-- cierre de la sección "sobre-mi" -->
-    </section>
-
-    <!-- section con id="skills": acá aterriza el segundo enlace del nav -->
-    <section id="skills">
-      <!-- h2: título propio de esta sección -->
-      <h2>Skills</h2>
-      <!-- article: cada skill tiene sentido leída sola, por eso NO es un div -->
-      <article>
-        <!-- h3: un nivel debajo del h2 de la sección -->
-        <h3>HTML5</h3>
-        <p>Estructura semántica de páginas web.</p>
-      <!-- cierre de este article -->
-      </article>
-      <!-- segundo article: mismo patrón, otra skill -->
-      <article>
-        <h3>Tailwind CSS</h3>
-        <p>Estilos responsivos utility-first.</p>
-      </article>
-      <!-- tercer article: mismo patrón, otra skill -->
-      <article>
-        <h3>Git & GitHub</h3>
-        <p>Control de versiones y despliegue.</p>
-      </article>
-    <!-- cierre de la sección "skills" -->
-    </section>
-  <!-- cierre de main -->
-  </main>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contacto</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aguayo Gonzalez Edgar Steven · Portafolio</title>
+<meta name="description" content="Portafolio de Aguayo Gonzalez Edgar Steven — desarrollo web y aplicaciones." />
+<link rel="icon" href="data:,">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {50:'#edf5f0',100:'#dcebe1',200:'#c0d9ca',300:'#9fc2ad',400:'#7da58e',500:'#638a74',600:'#4f735f',700:'#405d4e',800:'#344b3e',900:'#293c32'},
+          ink: '#141c17',
+          slate: {50:'#0c110e',100:'#151d18',200:'#dfe4dd',300:'#c8d0c7',400:'#95a197',500:'#6c796f',600:'#536157',700:'#3e4b42',900:'#141c17'}
+        },
+        fontFamily: {
+          sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+          mono: ['"JetBrains Mono"','ui-monospace','SFMono-Regular','monospace']
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --paper: #F7F5EF;
-    --ink: #1C2321;
-    --line: #C9C2B2;
-    --moss: #4B5E4A;
-    --moss-dark: #354438;
-    --rust: #A6432E;
-    --muted: #6B6459;
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  code, .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .scroll-progress {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 60;
+    height: 3px;
+    background: rgba(159, 194, 173, 0.14);
+    pointer-events: none;
   }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-    display: flex;
-    justify-content: center;
-    padding: 64px 20px;
-    line-height: 1.5;
-  }
-
-  .card {
+  #scroll-progress-bar {
+    display: block;
     width: 100%;
-    max-width: 480px;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(90deg, #638a74, #c0d9ca);
+    box-shadow: 0 0 12px rgba(159, 194, 173, 0.55);
   }
-
-  .kicker {
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.02em;
-    color: var(--muted);
-    margin: 0 0 6px;
+  nav a { position: relative; }
+  nav a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+    height: 2px;
+    background: #9fc2ad;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 220ms ease;
   }
-
-  h1 {
-    font-size: 32px;
-    font-weight: 500;
-    margin: 0 0 8px;
-    letter-spacing: -0.01em;
+  nav a:hover::after, nav a:focus-visible::after { transform: scaleX(1); }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.7;
+    background-image: linear-gradient(rgba(159, 194, 173, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(159, 194, 173, 0.12) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: linear-gradient(to bottom, black, transparent 95%);
+    animation: grid-drift 32s linear infinite;
   }
-
-  p.lead {
-    color: var(--muted);
-    margin: 0 0 40px;
-    max-width: 38ch;
+  .hero-grid::after {
+    content: "";
+    position: absolute;
+    inset: -40% 0 auto;
+    height: 35%;
+    background: linear-gradient(180deg, transparent, rgba(159, 194, 173, 0.18), transparent);
+    animation: light-sweep 8s ease-in-out infinite;
   }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 26px;
+  .profile-photo {
+    animation: photo-glow 3s ease-in-out infinite;
   }
-
-  .field {
+  @keyframes grid-drift {
+    to { background-position: 52px 52px; }
+  }
+  @keyframes light-sweep {
+    to { transform: translateY(420%); }
+  }
+  @keyframes photo-glow {
+    50% { filter: drop-shadow(0 0 12px rgba(125, 165, 142, 0.55)); }
+  }
+  .scroll-reveal.scroll-ready,
+  .scroll-stagger.scroll-ready > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 650ms ease, transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .scroll-reveal.scroll-ready.is-visible,
+  .scroll-stagger.scroll-ready.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .scroll-stagger.is-visible > *:nth-child(2) { transition-delay: 70ms; }
+  .scroll-stagger.is-visible > *:nth-child(3) { transition-delay: 140ms; }
+  .scroll-stagger.is-visible > *:nth-child(4) { transition-delay: 210ms; }
+  .scroll-stagger.is-visible > *:nth-child(5) { transition-delay: 280ms; }
+  .scroll-stagger.is-visible > *:nth-child(6) { transition-delay: 350ms; }
+  .scroll-reveal h2 {
     position: relative;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 8px;
-    transition: border-color 0.2s ease;
+    width: fit-content;
+    padding-bottom: 0.25rem;
   }
-
-  .field:focus-within {
-    border-color: var(--moss);
+  .scroll-reveal h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 42px;
+    height: 2px;
+    background: #7da58e;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms ease 180ms;
   }
-
-  label {
-    display: block;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 6px;
+  .scroll-reveal.is-visible h2::after { transform: scaleX(1); }
+  #stack .scroll-stagger > * {
+    transition: opacity 650ms ease, transform 280ms ease, box-shadow 280ms ease;
   }
-
-  input, textarea {
-    width: 100%;
-    border: none;
-    background: transparent;
-    font-family: inherit;
-    font-size: 17px;
-    color: var(--ink);
-    padding: 4px 0;
-    outline: none;
-    resize: none;
+  #stack .scroll-stagger > *:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
   }
-
-  textarea { min-height: 90px; }
-
-  .field small.hint {
-    display: block;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 4px;
+  #entregas li {
+    transition: opacity 650ms ease, transform 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
   }
-
-  .field small.error {
-    display: none;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 12px;
-    color: var(--rust);
-    margin-top: 4px;
+  #entregas li:hover {
+    transform: translateY(-4px);
+    border-color: rgba(159, 194, 173, 0.35);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
   }
-
-  .field.invalid { border-color: var(--rust); }
-  .field.invalid small.error { display: block; }
-  .field.invalid small.hint { display: none; }
-
-  button {
-    margin-top: 12px;
-    align-self: flex-start;
-    background: var(--moss-dark);
-    color: var(--paper);
-    border: none;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 15px;
-    padding: 13px 28px;
-    cursor: pointer;
-    transition: background 0.2s ease;
+  #datos-alumno a, #entregas a, #contacto a, #proyecto > div:last-child a {
+    transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
   }
-
-  button:hover { background: var(--moss); }
-
-  .status {
-    margin-top: 20px;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 14px;
-    color: var(--moss-dark);
-    display: none;
+  #datos-alumno a:hover, #entregas a:hover, #contacto a:hover, #proyecto > div:last-child a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 138, 116, 0.2);
   }
-
-  .status.visible { display: block; }
+  #proyecto .overflow-hidden img { transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  #proyecto .overflow-hidden:hover img { transform: scale(1.025); }
+  .project-window { transition: border-color 300ms ease, box-shadow 300ms ease; }
+  .project-window:hover { border-color: rgba(159, 194, 173, 0.4); box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28); }
+  .back-to-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 60;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease, background-color 220ms ease;
+  }
+  .back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+  .back-to-top:hover { background-color: #638a74; }
+  :focus-visible { outline: 2px solid #9fc2ad; outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-grid, .hero-grid::after, .profile-photo { animation: none; }
+    .scroll-reveal, .scroll-stagger > * { opacity: 1; transform: none; transition: none; }
+    .scroll-reveal h2::after { transition: none; transform: scaleX(1); }
+    #stack .scroll-stagger > *, #entregas li, #datos-alumno a, #entregas a, #contacto a, #proyecto > div:last-child a, #proyecto .overflow-hidden img { transition: none; }
+    #stack .scroll-stagger > *:hover, #entregas li:hover, #datos-alumno a:hover, #entregas a:hover, #contacto a:hover, #proyecto > div:last-child a:hover, #proyecto .overflow-hidden:hover img { transform: none; }
+    nav a::after, .project-window, .back-to-top { transition: none; }
+  }
 </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-200 antialiased">
+<div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
 
-<div class="card">
-  <p class="kicker">Ponte en contacto</p>
-  <h1>Escríbenos</h1>
-  <p class="lead">Responde estas preguntas y te contactaremos en menos de un día hábil.</p>
-
-  <form id="contactForm" novalidate>
-
-    <div class="field" data-field="nombre">
-      <label for="nombre">Nombre completo</label>
-      <input
-        type="text"
-        id="nombre"
-        name="nombre"
-        required
-        minlength="3"
-        maxlength="60"
-        placeholder="Ej. Ana García"
-      >
-      <small class="hint">Como quieres que te llamemos.</small>
-      <small class="error">Escribe al menos 3 caracteres.</small>
+<!-- ===================== NAV ===================== -->
+<header class="sticky top-0 z-50 bg-slate-100/95 backdrop-blur border-b border-white/10">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#inicio" class="flex items-center" aria-label="Inicio">
+        <img src="imagenes/foto%20de%20perfil.png" alt="Foto de perfil de Edgar Aguayo" class="h-10 w-10 rounded-full object-cover ring-2 ring-brand-500/50">
+      </a>
+      <nav class="flex flex-wrap items-center gap-x-4 gap-y-3 text-xs font-medium text-slate-300 sm:gap-x-6 sm:text-sm" aria-label="Navegación principal">
+        <a href="#inicio" class="hover:text-brand-300">Inicio</a>
+        <a href="#sobre-mi" class="hover:text-brand-300">Sobre mí</a>
+        <a href="#stack" class="hover:text-brand-300">Stack</a>
+        <a href="#proyecto" class="hover:text-brand-300">Proyecto</a>
+        <a href="#entregas" class="hover:text-brand-300">Entregas</a>
+        <a href="#contacto" class="hover:text-brand-300">Contacto</a>
+      </nav>
     </div>
+  </div>
+</header>
 
-    <div class="field" data-field="email">
-      <label for="email">Correo electrónico</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        required
-        placeholder="ana@correo.com"
-      >
-      <small class="hint">Usaremos esto para responderte.</small>
-      <small class="error">Escribe un correo válido, ej. nombre@dominio.com.</small>
+<section id="inicio" class="relative overflow-hidden bg-ink">
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-900 via-ink to-slate-900"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div id="datos-alumno" class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+
+      <img src="imagenes/foto%20de%20perfil.png" alt="Foto de perfil de Aguayo Gonzalez Edgar Steven" class="profile-photo h-28 w-28 rounded-full object-cover flex-none ring-4 ring-brand-500/40">
+
+      <div class="text-center sm:text-left">
+        <p class="text-brand-300 text-xs font-semibold uppercase tracking-wide">Portafolio · Aplicaciones Web</p>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Aguayo Gonzalez Edgar Steven</h1>
+        <p class="text-slate-300 mt-2">Matrícula: <span class="text-white font-semibold">25311035</span> · Grupo: <span class="text-white font-semibold">4-1</span></p>
+        <p class="mt-4 text-slate-300 max-w-xl">Estudiante y desarrollador web en formación, interesado en crear aplicaciones útiles y aprender nuevas tecnologías.</p>
+        <div class="mt-6 flex flex-wrap justify-center sm:justify-start gap-3">
+          <a href="https://github.com/AguayoGonzalezEdgarSteven" target="_blank" rel="noopener noreferrer" class="rounded-lg bg-white text-ink font-semibold px-4 py-2 text-sm hover:bg-slate-100 transition">GitHub</a>
+          <a href="https://www.linkedin.com/search/results/people/?keywords=Aguayo%20Gonzalez%20Edgar%20Steven" target="_blank" rel="noopener noreferrer" class="rounded-lg bg-white/10 text-white font-semibold px-4 py-2 text-sm border border-white/20 hover:bg-white/20 transition">LinkedIn</a>
+          <a href="#entregas" class="rounded-lg bg-brand-600 text-white font-semibold px-4 py-2 text-sm hover:bg-brand-500 transition">Ver mis entregas →</a>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="field" data-field="telefono">
-      <label for="telefono">Teléfono (opcional)</label>
-      <input
-        type="tel"
-        id="telefono"
-        name="telefono"
-        pattern="^[0-9+\-\s]{7,15}$"
-        placeholder="662 123 4567"
-      >
-      <small class="hint">Solo números, espacios o guiones.</small>
-      <small class="error">Revisa el formato del teléfono.</small>
+<!-- ===================== SOBRE MÍ ===================== -->
+<section id="sobre-mi" class="scroll-reveal max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <p class="text-brand-300 font-semibold text-xs uppercase tracking-wide">Sobre mí</p>
+  <h2 class="text-2xl font-extrabold mt-1">Un poco más de contexto</h2>
+  <p class="mt-4 text-slate-300 max-w-2xl">
+    Soy estudiante de desarrollo de software y me interesa crear aplicaciones web claras y funcionales. Disfruto aprender nuevas tecnologías y entender cómo cada parte de un proyecto se conecta para resolver necesidades reales.
+  </p>
+</section>
+
+<!-- ===================== STACK TECNOLÓGICO ===================== -->
+<section id="stack" class="scroll-reveal bg-slate-100 border-y border-white/10">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <p class="text-brand-300 font-semibold text-xs uppercase tracking-wide">Stack</p>
+    <h2 class="text-2xl font-extrabold mt-1">Tecnologías que usé en este curso</h2>
+    <div class="mt-6 flex flex-wrap gap-3 scroll-stagger">
+      <span class="px-4 py-2 rounded-full bg-orange-50 text-orange-700 text-sm font-semibold border border-orange-200">HTML5 semántico</span>
+      <span class="px-4 py-2 rounded-full bg-sky-50 text-sky-700 text-sm font-semibold border border-sky-200">Tailwind CSS</span>
+      <span class="px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 text-sm font-semibold border border-emerald-200">Django (Python)</span>
+      <span class="px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold border border-blue-200">MySQL en la nube</span>
+      <span class="px-4 py-2 rounded-full bg-violet-50 text-violet-700 text-sm font-semibold border border-violet-200">Render</span>
+      <span class="px-4 py-2 rounded-full bg-slate-50 text-slate-200 text-sm font-semibold border border-white/10">Git + GitHub</span>
     </div>
+  </div>
+</section>
 
-    <div class="field" data-field="mensaje">
-      <label for="mensaje">Mensaje</label>
-      <textarea
-        id="mensaje"
-        name="mensaje"
-        required
-        minlength="10"
-        maxlength="500"
-        placeholder="Cuéntanos en qué podemos ayudarte"
-      ></textarea>
-      <small class="hint">Mínimo 10 caracteres.</small>
-      <small class="error">El mensaje necesita al menos 10 caracteres.</small>
+<section id="proyecto" class="scroll-reveal max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <p class="text-brand-300 font-semibold text-xs uppercase tracking-wide">Proyecto Integrador</p>
+  <h2 class="text-2xl font-extrabold mt-1">ine_personal_esag</h2>
+  <p class="mt-4 text-slate-300 max-w-2xl">
+    Aplicación web para consultar y presentar información personal en formato digital, con una interfaz clara y adaptable.
+  </p>
+
+  <div class="project-window mt-8 rounded-2xl border border-white/10 overflow-hidden">
+    <div class="flex h-10 items-center gap-2 border-b border-white/10 bg-white/5 px-4">
+      <span class="h-2.5 w-2.5 rounded-full bg-rose-400/80"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-amber-300/80"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-emerald-400/80"></span>
+      <span class="ml-2 font-mono text-xs text-slate-400">ine_personal_esag</span>
     </div>
+    <img src="imagenes/ptoyectp.png" alt="Captura del proyecto ine_personal_esag" class="block w-full h-auto" loading="lazy">
+  </div>
 
-    <button type="submit">Enviar mensaje</button>
-    <p class="status" id="statusMsg">Gracias, tu mensaje fue enviado correctamente.</p>
-  </form>
-</div>
+  <div class="mt-6">
+    <a href="https://ine-personal-esag.onrender.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-3 text-sm transition">
+      Visitar proyecto →
+    </a>
+  </div>
+</section>
+
+<section id="entregas" class="scroll-reveal bg-ink text-white">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <p class="text-brand-300 font-semibold text-xs uppercase tracking-wide">Evidencia por unidad</p>
+    <h2 class="text-2xl font-extrabold mt-1">Entregas por unidad</h2>
+    <p class="mt-3 text-slate-300 max-w-2xl">Repositorios y publicaciones de mis prácticas de desarrollo web.</p>
+
+    <ul class="mt-8 grid sm:grid-cols-2 gap-4 scroll-stagger">
+      <li class="rounded-xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 transition">
+        <p class="text-xs font-bold text-orange-300 uppercase">Unidad 1</p>
+        <p class="font-semibold mt-1">Portafolio estático (HTML + Tailwind)</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <a href="https://github.com/AguayoGonzalezEdgarSteven/portafolio_ESAG" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-center text-sm font-semibold text-white transition hover:bg-white/10">GitHub · Práctica 1</a>
+          <a href="https://github.com/AguayoGonzalezEdgarSteven/ine_personal_ESAG" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-center text-sm font-semibold text-white transition hover:bg-white/10">GitHub · Práctica 2</a>
+          <a href="https://ine-personal-esag.onrender.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-lg bg-brand-600 px-3 py-2 text-center text-sm font-semibold text-white transition hover:bg-brand-500">Render · Práctica 2</a>
+        </div>
+      </li>
+      <li class="rounded-xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 transition">
+        <p class="text-xs font-bold text-emerald-300 uppercase">Unidad 2</p>
+        <p class="font-semibold mt-1">App Django + MySQL en Render</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <a href="https://github.com/AguayoGonzalezEdgarSteven/miproyecto_django_aiven_ages" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-center text-sm font-semibold text-white transition hover:bg-white/10">Ver en GitHub</a>
+          <span class="inline-flex items-center justify-center rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-slate-400">Render · Pendiente</span>
+        </div>
+      </li>
+      <li class="rounded-xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 transition">
+        <p class="text-xs font-bold text-blue-300 uppercase">Unidad 3</p>
+        <p class="font-semibold mt-1">Pendiente</p>
+      </li>
+      <li class="rounded-xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 transition">
+        <p class="text-xs font-bold text-purple-300 uppercase">Unidad 4</p>
+        <p class="font-semibold mt-1">Pendiente</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== CONTACTO ===================== -->
+<section id="contacto" class="scroll-reveal max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <p class="text-brand-300 font-semibold text-xs uppercase tracking-wide">Contacto</p>
+  <h2 class="text-2xl font-extrabold mt-1">Hablemos</h2>
+  <div class="mt-6 flex flex-wrap gap-4 text-sm scroll-stagger">
+    <a href="mailto:a25311035@uthermosillo.edu.mx" class="rounded-lg border border-white/15 px-4 py-2 font-semibold text-slate-300 hover:border-brand-400 hover:text-brand-300 transition">✉️ a25311035@uthermosillo.edu.mx</a>
+    <button id="copy-email" type="button" data-email="a25311035@uthermosillo.edu.mx" class="hidden sm:inline-flex rounded-lg border border-white/15 px-4 py-2 font-semibold text-slate-300 hover:border-brand-400 hover:text-brand-300 transition">Copiar correo</button>
+    <span id="copy-email-status" class="sr-only" aria-live="polite"></span>
+    <a href="https://github.com/AguayoGonzalezEdgarSteven" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-white/15 px-4 py-2 font-semibold text-slate-300 hover:border-brand-400 hover:text-brand-300 transition">GitHub: AguayoGonzalezEdgarSteven</a>
+  </div>
+</section>
+
+<footer class="scroll-reveal bg-slate-100 border-t border-white/10 text-slate-400 text-sm">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row justify-between gap-2">
+    <p>© 2026 Aguayo Gonzalez Edgar Steven</p>
+    <p>Aplicaciones Web</p>
+  </div>
+</footer>
+
+<button id="back-to-top" type="button" class="back-to-top hidden h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-slate-100 text-xl font-semibold text-white shadow-lg sm:flex" aria-label="Volver arriba" title="Volver arriba" aria-hidden="true" tabindex="-1">↑</button>
 
 <script>
-  const form = document.getElementById('contactForm');
-  const statusMsg = document.getElementById('statusMsg');
-
-  function validateField(fieldEl) {
-    const input = fieldEl.querySelector('input, textarea');
-    const isValid = input.checkValidity();
-    fieldEl.classList.toggle('invalid', !isValid);
-    return isValid;
-  }
-
-  form.querySelectorAll('.field').forEach(fieldEl => {
-    const input = fieldEl.querySelector('input, textarea');
-    input.addEventListener('blur', () => validateField(fieldEl));
-    input.addEventListener('input', () => {
-      if (fieldEl.classList.contains('invalid')) validateField(fieldEl);
+  const progressBar = document.querySelector('#scroll-progress-bar');
+  let progressFrame = 0;
+  const updateScrollProgress = () => {
+    if (progressFrame) return;
+    progressFrame = requestAnimationFrame(() => {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+      progressBar.style.transform = `scaleX(${Math.min(progress, 1)})`;
+      progressFrame = 0;
     });
-  });
+  };
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('resize', updateScrollProgress);
+  updateScrollProgress();
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    statusMsg.classList.remove('visible');
-
-    let allValid = true;
-    form.querySelectorAll('.field').forEach(fieldEl => {
-      const valid = validateField(fieldEl);
-      if (!valid) allValid = false;
-    });
-
-    if (allValid) {
-      statusMsg.classList.add('visible');
-      form.reset();
-    } else {
-      const firstInvalid = form.querySelector('.field.invalid input, .field.invalid textarea');
-      if (firstInvalid) firstInvalid.focus();
+  const copyEmailButton = document.querySelector('#copy-email');
+  const copyEmailStatus = document.querySelector('#copy-email-status');
+  copyEmailButton.addEventListener('click', async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(copyEmailButton.dataset.email);
+      } else {
+        const temporaryInput = document.createElement('textarea');
+        temporaryInput.value = copyEmailButton.dataset.email;
+        temporaryInput.setAttribute('readonly', '');
+        temporaryInput.style.position = 'fixed';
+        temporaryInput.style.opacity = '0';
+        document.body.append(temporaryInput);
+        temporaryInput.select();
+        const copied = document.execCommand('copy');
+        temporaryInput.remove();
+        if (!copied) throw new Error('Clipboard unavailable');
+      }
+      copyEmailButton.textContent = 'Copiado';
+      copyEmailStatus.textContent = 'Correo copiado al portapapeles.';
+    } catch {
+      copyEmailStatus.textContent = 'No se pudo copiar el correo.';
     }
+    window.setTimeout(() => {
+      copyEmailButton.textContent = 'Copiar correo';
+      copyEmailStatus.textContent = '';
+    }, 1800);
   });
+
+  const backToTop = document.querySelector('#back-to-top');
+  const updateBackToTop = () => {
+    const isVisible = window.scrollY > 500;
+    backToTop.classList.toggle('is-visible', isVisible);
+    backToTop.setAttribute('aria-hidden', String(!isVisible));
+    backToTop.tabIndex = isVisible ? 0 : -1;
+  };
+  window.addEventListener('scroll', updateBackToTop, { passive: true });
+  updateBackToTop();
+  backToTop.addEventListener('click', () => {
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    window.scrollTo({ top: 0, behavior });
+  });
+
+  const revealItems = document.querySelectorAll('.scroll-reveal, .scroll-stagger');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealItems.forEach(item => {
+      item.classList.add('scroll-ready');
+      revealObserver.observe(item);
+    });
+  }
 </script>
-
 </body>
-</html>
-  <!-- footer con id="contacto": acá aterriza el tercer enlace; va una sola vez, al final -->
-  <footer id="contacto">
-    <h2>Contacto</h2>
-    <!-- reemplazá por tu correo real -->
-    <p>[tu-correo@ejemplo.com]</p>
-    <!-- &copy; genera el símbolo © -->
-    <p>© 2026 [Tu Nombre]</p>
-  <!-- cierre del footer -->
-  </footer>
-
-<!-- cierre de body -->
-</body>
-<!-- cierre de html: fin del documento -->
-</html>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl504927'},{'dcenter':'p3'},{'cp_id':'10837813'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script></html>

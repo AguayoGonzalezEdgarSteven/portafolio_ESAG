@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: portafolio-esag
+    runtime: static
+    buildCommand: 'echo "Sitio estatico listo"'
+    staticPublishPath: .
+    branch: main
